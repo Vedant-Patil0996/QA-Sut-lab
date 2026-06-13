@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: labdb
+    ports:
+      - "5432:5432"
+  api:
+    build: ./backend
+    ports:
+      - "8099:8099"
+    environment:
+      DATABASE_URL: sqlite:///./lab.db # For simplicity in dev, or postgresql://user:password@db/labdb
+      BUG_MODE: "off"
+      CORS_ORIGINS: "http://localhost:5173"
+      JWT_SECRET: "supersecretlabkey123"
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: "/api"

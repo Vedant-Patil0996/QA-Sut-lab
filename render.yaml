@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: qa-sut-lab
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8099
+      - key: BUG_MODE
+        value: "off"
+      - key: DATABASE_URL
+        value: sqlite:///./lab.db
