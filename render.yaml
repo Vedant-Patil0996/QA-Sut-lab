@@ -2,6 +2,7 @@ services:
   - type: web
     name: qa-sut-lab
     env: docker
+    rootDir: backend
     dockerfilePath: ./Dockerfile
     plan: free
     envVars:
