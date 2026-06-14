@@ -11,7 +11,7 @@ export default function Upload() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('/api/documents/upload', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/documents/upload`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
