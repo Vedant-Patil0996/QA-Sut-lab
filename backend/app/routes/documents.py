@@ -47,7 +47,7 @@ async def upload_document(file: UploadFile = File(...), payload: dict = Security
         )
         
         response = client.models.generate_content(
-            model='gemini-3.5-flash',
+            model='gemini-1.5-flash',
             contents=prompt,
         )
         
