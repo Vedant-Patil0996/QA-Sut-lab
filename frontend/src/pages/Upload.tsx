@@ -11,6 +11,7 @@ export default function Upload() {
     formData.append('file', file);
 
     try {
+      setStatus('Uploading and analyzing with AI...');
       const response = await fetch(`${import.meta.env.VITE_API_URL || ''}/api/documents/upload`, {
         method: 'POST',
         headers: {
@@ -19,7 +20,8 @@ export default function Upload() {
         body: formData,
       });
       if (response.ok) {
-        setStatus(`Successfully uploaded ${file.name}`);
+        const data = await response.json();
+        setStatus(`Successfully uploaded ${file.name}.\n\nAI Summary: ${data.summary || 'No summary generated.'}`);
       } else {
         setStatus(`Upload failed: ${response.statusText}`);
       }
